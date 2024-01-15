@@ -4,13 +4,13 @@ import axios from 'axios';
 interface WeatherData {
   main: {
     temp: number;
-    humidity: number; // Додано вологість
+    humidity: number;
   };
   weather: {
     description: string;
   }[];
   wind: {
-    speed: number; // Додано швидкість вітру
+    speed: number;
   };
 }
 
@@ -18,19 +18,19 @@ interface ForecastData {
   list: {
     main: {
       temp: number;
-      humidity: number; // Додано вологість
+      humidity: number;
     };
     weather: {
       description: string;
     }[];
     wind: {
-      speed: number; // Додано швидкість вітру
+      speed: number;
     };
     dt_txt: string;
   }[];
 }
 
-interface WeatherApiHook {
+export interface WeatherApiHook {
   weatherData: WeatherData | null;
   forecastData: ForecastData | null;
   loading: boolean;

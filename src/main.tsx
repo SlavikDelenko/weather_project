@@ -5,7 +5,8 @@ import './index.css';
  
 ReactDOM.render( 
   <React.StrictMode> 
-    <DisplayWeatherData city="Lviv" /> 
+    <DisplayWeatherData /> 
   </React.StrictMode>, 
   document.getElementById('root') 
 );
+
