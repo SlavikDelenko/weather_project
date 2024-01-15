@@ -36,7 +36,7 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
                 <p>Температура: {kelvinToCelsius(item.main.temp)}°C</p>
                 <p>Вологість: {item.main.humidity}%</p>
                 <p>Опис погоди: {item.weather[0].description}</p>
-                <p>Швидкість вітру: {item.wind.speed} м/с</p>
+                <p>Швидкість вітру: {item.wind.speed} М/C</p>
               </li>
             ))}
           </ul>
