@@ -13,17 +13,25 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
   if (error) {
     return <p>{error}</p>;
   }
-
+  
   return (
     <div>
       {weatherData && (
-        <div>
-          <h1>Поточна погода в {city}</h1>
-          <p>Температура: {kelvinToCelsius(weatherData.main.temp)}°C</p>
-          <p>Вологість: {weatherData.main.humidity}%</p>
-          <p>Опис погоди: {weatherData.weather[0].description}</p>
-          <p>Швидкість вітру: {weatherData.wind.speed} м/с</p>
-        </div>
+         <div className="p-8 text-white">
+         <h1 className="text-4xl font-bold mb-4">Поточна погода в {city}</h1>
+         <p className="text-6xl font-bold mb-4">{kelvinToCelsius(weatherData.main.temp)}°C</p>
+         <div className="ml-4">
+           <p className="text-lg">
+             <span role="img" aria-label="humidity">&#x1F4A7;</span> Вологість: {weatherData.main.humidity}%
+           </p>
+           <p className="text-lg">
+             <span role="img" aria-label="description">&#x2601;</span> Опис погоди: {weatherData.weather[0].description}
+           </p>
+           <p className="text-lg">
+             <span role="img" aria-label="wind">&#x1F343;</span> Швидкість вітру: {weatherData.wind.speed} м/с
+           </p>
+         </div>
+       </div>
       )}
 
       {forecastData && (
