@@ -54,7 +54,7 @@ const useWeatherApi = (city: string): WeatherApiHook => {
         setWeatherData(currentWeatherResponse.data);
 
         // Forecast API URL (adjust `cnt` parameter to get more days of forecast)
-        const forecastApiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&cnt=3`;
+        const forecastApiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&cnt=7`;
         const forecastResponse = await axios.get<ForecastData>(forecastApiUrl);
         setForecastData(forecastResponse.data);
         
