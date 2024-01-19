@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import WeatherDisplay from './WeekWeather';
+import React, { useState, useEffect } from "react";
+import WeatherDisplay from "./CityWeather";
 
 interface SearchCityProps {
   setCity: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const SearchCity: React.FC<SearchCityProps> = ({ setCity }) => {
-  const [cityInput, setCityInput] = useState<string>('');
+  const [cityInput, setCityInput] = useState<string>("");
 
   useEffect(() => {
-
     const trimmedCity = cityInput.trim();
     if (trimmedCity) {
       setCity(trimmedCity);
@@ -32,12 +31,9 @@ const SearchCity: React.FC<SearchCityProps> = ({ setCity }) => {
           <label
             htmlFor="city"
             className="absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-blue-700"
-          >
-
-          </label>
+          ></label>
         </div>
       </div>
-
 
       {cityInput && <WeatherDisplay city={cityInput} />}
     </>
