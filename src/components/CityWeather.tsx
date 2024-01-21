@@ -1,11 +1,12 @@
 import React from 'react';
 import useWeatherApi from '../hooks/requests';
+import WeeksWeather from './WeeksWeather';
 
 const kelvinToCelsius = (kelvin: number): number => Math.round(kelvin - 273.15);
 
 const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
   const { weatherData, forecastData, loading, error } = useWeatherApi(city);
-
+  
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -31,10 +32,13 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
              <span role="img" aria-label="wind">&#x1F343;</span> Швидкість вітру: {weatherData.wind.speed} м/с
            </p>
          </div>
+         
        </div>
       )}
 
-      {forecastData && (
+
+      {/* {forecastData && <WeatherDisplay city={city} forecastData={forecastData} />} */}
+      {/* {forecastData && (
         <div>
           <h2>Тижневий прогноз погоди</h2>
           <ul>
@@ -49,7 +53,10 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
+
+      
+    {forecastData && <WeeksWeather city={city} forecastData={forecastData} />}
     </div>
   );
 };
