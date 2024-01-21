@@ -16,6 +16,8 @@ export default function Weather() {
 
   const getVideoSource = () => {
     switch (weatherDescription.toLowerCase()) {
+      case "broken clouds":
+        return "https://cdn.pixabay.com/vimeo/143492926/clouds-1154.mp4?width=480&hash=d2f753d2b6c07818fc6eb94764b671e65636e48f"
       case "sunny":
         return "https://cdn.pixabay.com/vimeo/447070773/cloud-45901.mp4?width=640&hash=18a0cb24f97d00a9183a7afb8097b1b7ca5da11b";
       case "light snow":
@@ -39,9 +41,9 @@ export default function Weather() {
     <>
       <div className="relative">
         <div className="flex items-center justify-center h-screen">
-          <div className="w-full h-full absolute inset-0">
+          <div className="w-full h-screen absolute inset-0">
             <video
-              className="w-full h-full object-cover"
+              className="w-full h-screen object-cover"
               autoPlay
               loop
               muted
@@ -50,7 +52,7 @@ export default function Weather() {
             />
           </div>
         </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-70 p-8 rounded-lg w-1/2 h-1/2">
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-70 p-8 rounded-lg w-1/2 h-1/2">
           <SearchCity setCity={setCity} />
           <WeatherDisplay city={city} />
         </div>
