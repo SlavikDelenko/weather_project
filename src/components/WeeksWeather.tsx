@@ -59,7 +59,7 @@ const WeeksWeather: React.FC<WeeksWeatherProps> = ({ city, forecastData, isCelsi
   return (
     <div className="mx-auto p-4">
       <style>{styles}</style>
-      <h2 className="text-xl font-semibold mb-5 mt-5">{`Тижневий прогноз для ${city}`}</h2>
+      <h2 className="text-2xl font-semibold mb-5 mt-5">{`Тижневий прогноз для ${city}`}</h2>
       <ul className={`flex -mx-20 overflow-x-auto scrollbar`}>
         {forecastData.list.map((item: WeatherItem) => (
           <li key={item.dt_txt} className="px-2">
