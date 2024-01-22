@@ -7,13 +7,13 @@ const kelvinToCelsius = (kelvin: number): number => Math.round(kelvin - 273.15);
 const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
   const { weatherData, forecastData, loading, error } = useWeatherApi(city);
   
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
 
-  if (error) {
-    return <p>{error}</p>;
-  }
+  // if (error) {
+  //   return <p>{error}</p>;
+  // }
   
   return (
     <div>
