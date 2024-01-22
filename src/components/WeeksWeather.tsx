@@ -1,5 +1,3 @@
-// WeeksWeather.tsx
-
 import React from 'react';
 
 interface WeatherItem {
@@ -16,7 +14,14 @@ interface WeatherItem {
   };
 }
 
+interface WeeksWeatherProps {
+  city: string;
+  forecastData: { list: WeatherItem[] };
+  isCelsius: boolean;
+}
+
 const kelvinToCelsius = (kelvin: number): number => Math.round(kelvin - 273.15);
+const celsiusToFahrenheit = (celsius: number): number => Math.round((celsius * 9) / 5 + 32);
 
 const getDayOfWeek = (date: string): string => {
   const daysOfWeek = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота'];
@@ -36,7 +41,7 @@ const styles = `
     scrollbar-color: darkgrey #282c34; /* Колір доріжки і кінцевого маркера скролбара */
   }
 
-  .scrollbar::-webkit-scrollbar {
+    .scrollbar::-webkit-scrollbar {
     width: 13px; /* Ширина скролбара */
   }
 
@@ -50,7 +55,7 @@ const styles = `
   }
 `;
 
-const WeeksWeather: React.FC<{ city: string; forecastData: { list: WeatherItem[] } }> = ({ city, forecastData }) => {
+const WeeksWeather: React.FC<WeeksWeatherProps> = ({ city, forecastData, isCelsius }) => {
   return (
     <div className="mx-auto p-4">
       <style>{styles}</style>
@@ -61,10 +66,10 @@ const WeeksWeather: React.FC<{ city: string; forecastData: { list: WeatherItem[]
             <div className="text-white bg-black bg-opacity-50 rounded-lg p-4 shadow-lg w-56 h-52">
               <p className="font-semibold">{getDayOfWeek(item.dt_txt)}</p>
               <p>{`Дата: ${new Date(item.dt_txt).getDate()} ${new Intl.DateTimeFormat('uk-UA', { month: 'long' } as ExtendedDateTimeFormatOptions).format(new Date(item.dt_txt))}`}</p>
-              <p>{`Температура: ${kelvinToCelsius(item.main.temp)}°C`}</p>
-              <p><span role="img" aria-label="humidity">&#x1F4A7;</span>{`Вологість: ${item.main.humidity}%`}</p>
-              <p><span role="img" aria-label="description">&#x2601;</span>{`Опис: ${item.weather[0].description}`}</p>
-              <p><span role="img" aria-label="wind">&#x1F343;</span>{`Вітер: ${item.wind.speed} м/с`}</p>
+              <p>{`Температура: ${isCelsius ? kelvinToCelsius(item.main.temp) : celsiusToFahrenheit(kelvinToCelsius(item.main.temp))}°${isCelsius ? 'C' : 'F'}`}</p>
+              <p><span role="img" aria-label="humidity">💧</span>{`Вологість: ${item.main.humidity}%`}</p>
+              <p><span role="img" aria-label="description">☁</span>{`Опис: ${item.weather[0].description}`}</p>
+              <p><span role="img" aria-label="wind">🍃</span>{`Вітер: ${item.wind.speed} м/с`}</p>
             </div>
           </li>
         ))}
@@ -72,5 +77,6 @@ const WeeksWeather: React.FC<{ city: string; forecastData: { list: WeatherItem[]
     </div>
   );
 };
+
 
 export default WeeksWeather;
