@@ -1,6 +1,7 @@
 import React from 'react';
 import useWeatherApi from '../hooks/requests';
 import WeeksWeather from './WeeksWeather';
+import Loaders from '../loaders/Loaders';
 
 const kelvinToCelsius = (kelvin: number): number => Math.round(kelvin - 273.15);
 
@@ -8,13 +9,9 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
   const { weatherData, forecastData, loading, error } = useWeatherApi(city);
   
   // if (loading) {
-  //   return <p>Loading...</p>;
+  //   return <Loaders/>;
   // }
 
-  // if (error) {
-  //   return <p>{error}</p>;
-  // }
-  
   return (
     <div>
       {weatherData && (
@@ -36,26 +33,6 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
        </div>
       )}
 
-
-      {/* {forecastData && <WeatherDisplay city={city} forecastData={forecastData} />} */}
-      {/* {forecastData && (
-        <div>
-          <h2>Тижневий прогноз погоди</h2>
-          <ul>
-            {forecastData.list.map((item) => (
-              <li key={item.dt_txt}>
-                <p>Дата: {item.dt_txt}</p>
-                <p>Температура: {kelvinToCelsius(item.main.temp)}°C</p>
-                <p>Вологість: {item.main.humidity}%</p>
-                <p>Опис погоди: {item.weather[0].description}</p>
-                <p>Швидкість вітру: {item.wind.speed} М/C</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )} */}
-
-      
     {forecastData && <WeeksWeather city={city} forecastData={forecastData} />}
     </div>
   );
