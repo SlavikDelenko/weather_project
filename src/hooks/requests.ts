@@ -47,16 +47,30 @@ const useWeatherApi = (city: string): WeatherApiHook => {
     const fetchWeatherData = async () => {
       try {
         const apiKey = 'be062ae90cf3d3303f85298bf828843e';
-
+  
         // Current weather API URL
         const currentWeatherApiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
         const currentWeatherResponse = await axios.get<WeatherData>(currentWeatherApiUrl);
         setWeatherData(currentWeatherResponse.data);
-
+  
         // Forecast API URL (adjust `cnt` parameter to get more days of forecast)
-        const forecastApiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&cnt=7`;
+        const forecastApiUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&cnt=40`; // 40 for 5-day forecast (8 data points per day)
         const forecastResponse = await axios.get<ForecastData>(forecastApiUrl);
-        setForecastData(forecastResponse.data);
+  
+        // Filter forecast data to group by days
+        const groupedForecastData: { [date: string]: any[] } = {};
+        forecastResponse.data.list.forEach((item) => {
+          const date = item.dt_txt.split(' ')[0]; // Extracting date part
+          if (!groupedForecastData[date]) {
+            groupedForecastData[date] = [];
+          }
+          groupedForecastData[date].push(item);
+        });
+  
+        // Select the first item for each day
+        const nextWeekForecastData = Object.values(groupedForecastData).map((group) => group[0]);
+  
+        setForecastData({ list: nextWeekForecastData.slice(0, 7) }); 
         
         setLoading(false);
         setError(null);
@@ -67,9 +81,11 @@ const useWeatherApi = (city: string): WeatherApiHook => {
         setForecastData(null);
       }
     };
-
+  
     fetchWeatherData();
   }, [city]);
+  
+  
 
   return { weatherData, forecastData, loading, error };
 };
