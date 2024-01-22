@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import SearchCity from "./SearchCity";
 import WeatherDisplay from "./CityWeather";
 import useWeatherApi from "../hooks/requests";
@@ -6,7 +6,7 @@ import useWeatherApi from "../hooks/requests";
 export default function Weather() {
   const [city, setCity] = useState("Lviv");
   const [weatherDescription, setWeatherDescription] = useState("");
-  const { weatherData, loading, error } = useWeatherApi(city);
+  const { weatherData } = useWeatherApi(city);
 
   useEffect(() => {
     if (weatherData) {
