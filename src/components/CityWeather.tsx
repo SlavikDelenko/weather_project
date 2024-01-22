@@ -45,8 +45,11 @@ const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
       {forecastData && <WeeksWeather city={city} forecastData={forecastData} isCelsius={isCelsius} />}
 
       {/* Add the button to toggle between Celsius and Fahrenheit */}
-      <button onClick={toggleUnit}>
-        Змінити на {isCelsius ? '°F' : '°C'}
+      <button
+        onClick={toggleUnit}
+        className="absolute top-0 right-0 mt-4 mr-4 text-white font-bold py-2 px-4 rounded"
+      >
+        {isCelsius ? '°C' : '°F'}
       </button>
     </div>
   );
