@@ -46,7 +46,7 @@ const SearchCity: React.FC<SearchCityProps> = ({ setCity }) => {
         </div>
       </div>
 
-      {cityInput && <WeatherDisplay city={cityInput} />}
+
     </>
   );
 };
