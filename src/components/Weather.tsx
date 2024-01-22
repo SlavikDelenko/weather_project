@@ -16,6 +16,8 @@ export default function Weather() {
 
   const getVideoSource = () => {
     switch (weatherDescription.toLowerCase()) {
+      case "scattered clouds":
+        return "https://cdn.pixabay.com/vimeo/166339063/sky-3186.mp4?width=640&hash=8eeaf50375574be9d47d38e94c0e878371714741";
       case "broken clouds":
         return "https://cdn.pixabay.com/vimeo/143492926/clouds-1154.mp4?width=480&hash=d2f753d2b6c07818fc6eb94764b671e65636e48f"
       case "sunny":
@@ -23,15 +25,13 @@ export default function Weather() {
       case "light snow":
         return "https://cdn.pixabay.com/vimeo/890121806/trees-191443.mp4?width=1280&hash=981f53e4d65a42903693d44aecb9164ac9fb1c4b";
       case "clear sky":
-        return "https://vod-progressive.akamaized.net/exp=1705705546~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F947%2F7%2F179739298%2F586747226.mp4~hmac=c46121abc9052efb170a62fbfbf57362b654ae7b6278498f581c031ef78739cf/vimeo-prod-skyfire-std-us/01/947/7/179739298/586747226.mp4?filename=file.mp4";
+        return "https://cdn.pixabay.com/vimeo/412926058/sky-36816.mp4?width=640&hash=4613a93831ee0cc645679805178e2918646c2580";
       case "rain":
-        return "";
+        return "https://cdn.pixabay.com/vimeo/637690571/rain-92413.mp4?width=1280&hash=8d718b75aa85eca4e732f5dd6aef90a8c6aed02e";
       case "overcast clouds":
         return "https://cdn.pixabay.com/vimeo/417752184/time-lapse-38125.mp4?width=640&hash=30fe55925c745d94e9573e06218f2a7cb2939b21";
       case "snow":
         return "https://cdn.pixabay.com/vimeo/390497845/storm-32082.mp4?width=640&hash=43acd1b4853998c4109e7b788592920c6d15c948";
-      case "clear sky":
-        return;
       default:
         return "";
     }

@@ -7,12 +7,18 @@ interface SearchCityProps {
 
 const SearchCity: React.FC<SearchCityProps> = ({ setCity }) => {
   const [cityInput, setCityInput] = useState<string>("");
+  const [customCityEntered, setCustomCityEntered] = useState<boolean>(false);
 
   useEffect(() => {
     const trimmedCity = cityInput.trim();
     if (trimmedCity) {
       setCity(trimmedCity);
+      setCustomCityEntered(true);
+    } else {
+      setCity("Lviv");
+      setCustomCityEntered(false);
     }
+
   }, [cityInput, setCity]);
 
   return (
@@ -25,6 +31,11 @@ const SearchCity: React.FC<SearchCityProps> = ({ setCity }) => {
             type="text"
             value={cityInput}
             onChange={(e) => setCityInput(e.target.value)}
+            onBlur={() => {
+              if (!customCityEntered) {
+                setCity("Lviv");
+              }
+            }}
             className="border-b border-black py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit w-96"
             placeholder="Enter city name"
           />
