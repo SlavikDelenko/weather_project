@@ -52,7 +52,7 @@ export default function Weather() {
             />
           </div>
         </div>
-        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-70 p-8 rounded-lg w-1/2 h-1/2">
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-gray-800 bg-opacity-70 p-8 rounded-lg w-1/2 h-2/5">
           <SearchCity setCity={setCity} />
           <WeatherDisplay city={city} />
         </div>
