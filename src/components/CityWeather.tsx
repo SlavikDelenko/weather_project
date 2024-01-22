@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useWeatherApi from '../hooks/requests';
 import WeeksWeather from './WeeksWeather';
+import Loaders from '../Loaders/Loaders';
 
 const kelvinToCelsius = (kelvin: number): number => Math.round(kelvin - 273.15);
 const celsiusToFahrenheit = (celsius: number): number => Math.round((celsius * 9) / 5 + 32);
@@ -8,6 +9,11 @@ const celsiusToFahrenheit = (celsius: number): number => Math.round((celsius * 9
 const WeatherDisplay: React.FC<{ city: string }> = ({ city }) => {
   const { weatherData, forecastData, loading, error } = useWeatherApi(city);
   const [isCelsius, setIsCelsius] = useState(true);
+
+  if (loading) {
+
+    return <Loaders />;
+  }
 
   const toggleUnit = () => {
     setIsCelsius((prev) => !prev);
