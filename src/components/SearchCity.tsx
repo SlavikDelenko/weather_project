@@ -48,7 +48,7 @@ const SearchCity: React.FC<SearchCityProps> = ({ setCity }) => {
                 }
               }}
               className="border-b border-black py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit w-96"
-              placeholder="Enter city name"
+              placeholder="Назва населеного пункту, країни чи регіону"
             />
             <label
               htmlFor="city"
